@@ -5,8 +5,8 @@ namespace ConferencePlanner.GraphQL.Features.Speakers;
 
 public record AddSpeakerInput(
     string Name,
-    string Biography,
-    string WebSite);
+    string? Biography,
+    string? WebSite);
 
 public record AddSpeakerPayload(Speaker Speaker);
 

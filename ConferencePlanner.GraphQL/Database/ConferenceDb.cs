@@ -6,7 +6,7 @@ namespace ConferencePlanner.GraphQL.Database;
 
 public class ConferenceDb : DbContext
 {
-    public DbSet<Speaker> Speakers { get; set; }
+    public DbSet<Speaker> Speakers { get; set; } = default!;
 
     public ConferenceDb(DbContextOptions<ConferenceDb> options)
         : base(options)
