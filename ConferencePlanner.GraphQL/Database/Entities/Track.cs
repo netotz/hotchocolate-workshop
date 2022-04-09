@@ -2,12 +2,12 @@
 
 namespace ConferencePlanner.GraphQL.Database.Entities;
 
-public class Speaker
+public class Track
 {
     public int Id { get; set; }
+
     [Required]
     public string? Name { get; set; }
-    public string? Biography { get; set; }
-    public string? WebSite { get; set; }
+
     public ICollection<Session>? Sessions { get; set; }
 }

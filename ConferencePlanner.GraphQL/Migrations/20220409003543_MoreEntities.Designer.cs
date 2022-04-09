@@ -3,6 +3,7 @@ using System;
 using ConferencePlanner.GraphQL.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConferencePlanner.GraphQL.Migrations
 {
     [DbContext(typeof(ConferenceDb))]
-    partial class ConferenceDbModelSnapshot : ModelSnapshot
+    [Migration("20220409003543_MoreEntities")]
+    partial class MoreEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
