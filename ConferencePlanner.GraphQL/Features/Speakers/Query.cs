@@ -1,12 +1,16 @@
 ﻿using ConferencePlanner.GraphQL.Database;
 using ConferencePlanner.GraphQL.Database.Entities;
+using ConferencePlanner.GraphQL.Extensions;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.GraphQL.Features.Speakers;
 
 public class Query
 {
-    public IQueryable<Speaker> GetSpeakers([Service] ConferenceDb conferenceDb)
+    [UseConferenceDb]
+    public Task<List<Speaker>> GetSpeakers([ScopedService] ConferenceDb conferenceDb)
     {
-        return conferenceDb.Speakers;
+        return conferenceDb.Speakers.ToListAsync();
     }
 }

@@ -1,5 +1,4 @@
 using ConferencePlanner.GraphQL.Database;
-using ConferencePlanner.GraphQL.Features;
 using ConferencePlanner.GraphQL.Features.Speakers;
 
 using Microsoft.EntityFrameworkCore;
@@ -7,8 +6,10 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = @"Data Source=Database\conferences.db"; 
-builder.Services.AddDbContext<ConferenceDb>(options =>
+// pooled factory allows parallel queries
+builder.Services.AddPooledDbContextFactory<ConferenceDb>(options =>
     options.UseSqlite(connectionString));
+
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>();
@@ -16,9 +17,11 @@ builder.Services.AddGraphQLServer()
 
 var app = builder.Build();
 
-app.UseRouting();
-app.UseEndpoints(endpoints => endpoints.MapGraphQL());  
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
 
-app.MapGet("/", () => "Hello World!");
+app.MapGraphQL();
 
 app.Run();

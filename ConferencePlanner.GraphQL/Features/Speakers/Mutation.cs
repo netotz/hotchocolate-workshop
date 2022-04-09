@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.GraphQL.Database;
 using ConferencePlanner.GraphQL.Database.Entities;
+using ConferencePlanner.GraphQL.Extensions;
 
 namespace ConferencePlanner.GraphQL.Features.Speakers;
 
@@ -12,8 +13,10 @@ public record AddSpeakerPayload(Speaker Speaker);
 
 public class Mutation
 {
+    [UseConferenceDb]
     public async Task<AddSpeakerPayload> AddSpeakerAsync(
-            AddSpeakerInput input, [Service] ConferenceDb conferenceDb)
+        AddSpeakerInput input,
+        [ScopedService] ConferenceDb conferenceDb)
     {
         var newSpeaker = new Speaker
         {
