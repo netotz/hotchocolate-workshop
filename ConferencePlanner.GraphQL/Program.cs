@@ -1,4 +1,5 @@
 using ConferencePlanner.GraphQL.Database;
+using ConferencePlanner.GraphQL.Features.Sessions;
 using ConferencePlanner.GraphQL.Features.Speakers;
 
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,10 @@ builder.Services.AddPooledDbContextFactory<ConferenceDb>(options =>
     options.UseSqlite(connectionString));
 
 builder.Services.AddGraphQLServer()
-    .AddQueryType<Query>()
-    .AddMutationType<Mutation>()
-    .AddDataLoader<DataLoader>();
-
+    .AddQueryType<SpeakerQuery>()
+    .AddMutationType<SpeakerMutation>()
+    .AddDataLoader<SpeakerByIdDataLoader>()
+    .AddDataLoader<SessionByIdDataLoader>();
 
 var app = builder.Build();
 

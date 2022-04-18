@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.GraphQL.Features.Speakers;
 
-public class Query
+public class SpeakerQuery
 {
     [UseConferenceDb]
     public Task<List<Speaker>> GetSpeakers([ScopedService] ConferenceDb conferenceDb)
@@ -16,7 +16,7 @@ public class Query
 
     public Task<Speaker> GetSpeakerAsync(
         int id,
-        DataLoader dataLoader,
+        SpeakerByIdDataLoader dataLoader,
         CancellationToken cancellationToken)
     {
         return dataLoader.LoadAsync(id, cancellationToken);

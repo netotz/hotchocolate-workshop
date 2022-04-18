@@ -11,7 +11,7 @@ public record AddSpeakerInput(
 
 public record AddSpeakerPayload(Speaker Speaker);
 
-public class Mutation
+public class SpeakerMutation
 {
     [UseConferenceDb]
     public async Task<AddSpeakerPayload> AddSpeakerAsync(

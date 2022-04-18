@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.GraphQL.Features.Speakers;
 
-public class DataLoader : BatchDataLoader<int, Speaker>
+public class SpeakerByIdDataLoader : BatchDataLoader<int, Speaker>
 {
     private readonly IDbContextFactory<ConferenceDb> _dbContextFactory;
 
-    public DataLoader(
+    public SpeakerByIdDataLoader(
         IBatchScheduler batchScheduler,
         IDbContextFactory<ConferenceDb> dbContextFactory)
         : base(batchScheduler)
