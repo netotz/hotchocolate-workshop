@@ -12,7 +12,8 @@ builder.Services.AddPooledDbContextFactory<ConferenceDb>(options =>
 
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddMutationType<Mutation>();
+    .AddMutationType<Mutation>()
+    .AddDataLoader<DataLoader>();
 
 
 var app = builder.Build();

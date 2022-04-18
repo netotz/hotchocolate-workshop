@@ -13,4 +13,12 @@ public class Query
     {
         return conferenceDb.Speakers.ToListAsync();
     }
+
+    public Task<Speaker> GetSpeakerAsync(
+        int id,
+        DataLoader dataLoader,
+        CancellationToken cancellationToken)
+    {
+        return dataLoader.LoadAsync(id, cancellationToken);
+    }
 }
